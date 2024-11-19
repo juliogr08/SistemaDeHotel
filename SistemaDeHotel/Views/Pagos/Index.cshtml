@@ -1,0 +1,154 @@
+﻿@model IEnumerable<SistemaDeHotel.Models.Pago>
+
+@{
+    ViewData["Title"] = "Pagos";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f0f4f8, #d9e6f2);
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+
+        .payment-table {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+            .payment-table th, .payment-table td {
+                padding: 15px;
+                text-align: center;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .payment-table th {
+                background-color: #2c3e50;
+                color: white;
+            }
+
+            .payment-table tr:hover {
+                background-color: #f1f1f1;
+            }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-edit {
+            background-color: #3498db;
+        }
+
+            .btn-edit:hover {
+                background-color: #2980b9;
+            }
+
+        .btn-details {
+            background-color: #2ecc71;
+        }
+
+            .btn-details:hover {
+                background-color: #27ae60;
+            }
+
+        .btn-delete {
+            background-color: #e74c3c;
+        }
+
+            .btn-delete:hover {
+                background-color: #c0392b;
+            }
+
+        .btn-pay {
+            background-color: #f39c12;
+            margin: 20px auto;
+            display: block;
+            text-align: center;
+            width: 200px;
+        }
+
+            .btn-pay:hover {
+                background-color: #e67e22;
+            }
+
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+            .payment-methods img {
+                height: 40px;
+                margin: 0 10px;
+            }
+        .texto {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="texto">Pagos</h1>
+
+    <a class="btn btn-pay" asp-action="Create">Realizar Nuevo Pago</a>
+
+    <table class="payment-table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Monto)</th>
+                <th>@Html.DisplayNameFor(model => model.Fecha)</th>
+                <th>@Html.DisplayNameFor(model => model.FormaPago)</th>
+                <th>@Html.DisplayNameFor(model => model.Estado)</th>
+                <th>@Html.DisplayNameFor(model => model.Reserva)</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Monto)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Fecha)</td>
+                    <td>@Html.DisplayFor(modelItem => item.FormaPago)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Estado)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Reserva.Id)</td>
+                    <td>
+                        <a class="btn btn-edit" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                        <a class="btn btn-details" asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                        <a class="btn btn-delete" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="payment-methods">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="MasterCard" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" />
+    </div>
+</body>
+</html>
