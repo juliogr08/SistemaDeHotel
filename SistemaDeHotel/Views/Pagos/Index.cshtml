@@ -114,6 +114,7 @@
     <h1 class="texto">Pagos</h1>
 
     <a class="btn btn-pay" asp-action="Create">Realizar Nuevo Pago</a>
+    <a class="btn btn-pay" asp-action="DownloadPaymentsPDF">Descargar Lista de Pagos (PDF)</a>
 
     <table class="payment-table">
         <thead>
@@ -138,8 +139,11 @@
                     <td>
                         <a class="btn btn-edit" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
                         <a class="btn btn-details" asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
-                        <a class="btn btn-delete" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                        <a class="btn btn-delete" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a> |
+                        <a class="btn btn-pay" asp-action="GenerateInvoice" asp-route-id="@item.Id">Generar Factura</a>
                     </td>
+
+
                 </tr>
             }
         </tbody>
